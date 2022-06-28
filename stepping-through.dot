@@ -1,0 +1,18 @@
+digraph D {
+    node [fontname="Comic Sans"]
+    
+    init_shapes_dataset [label="Initialize shapes dataset"]
+    init_util_dataset [label="Initialize parent Dataset class"]
+    set_image_ids [label="set image ids"]
+    set_image_info [label="set image info"]
+    set_class_info [label="set list of class info list of dicts"]
+    set_source_class_ids [label="Set list of source class ids"]
+    shapedata_load_shapes [label="call load_shapes() on train shapes dataset"]
+
+
+    /* HERE BEGINS THE GRAPH */
+    
+    init_shapes_dataset -> init_util_dataset
+    init_util_dataset -> {set_image_ids, set_image_info, set_class_inf, set_source_class_ids} -> shapedata_load_shapes
+    
+}
