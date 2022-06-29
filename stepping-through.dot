@@ -8,6 +8,11 @@ digraph D {
     set_class_info [label="set list of class info list of dicts"]
     set_source_class_ids [label="Set list of source class ids"]
     shapedata_load_shapes [label="call load_shapes() on train shapes dataset"]
+    util_add_class [label="util dataset add_class method"]
+    gen_random_image [label="random shapes method to create a random image", shape=box]
+    gen_random_shape [label="random shapes method to generate a random shape", shape=box]
+    add_image [label="util dataset method that add id, source, and path (None in this case)"]
+    
 
     /* HERE BEGIN SUBGRAPHS */
 
@@ -23,6 +28,8 @@ digraph D {
     /* HERE BEGINS THE GRAPH */
     
     init_shapes_dataset -> init_util_dataset
-    init_util_dataset -> {set_image_ids, set_image_info, set_class_info, set_source_class_ids } -> shapedata_load_shapes
-    
+    init_util_dataset -> {set_image_ids, set_image_info, set_class_info, set_source_class_ids } [arrowhead=None]
+    shapedata_load_shapes -> {util_add_class, gen_random_image, add_image} [arrowhead=None]
+    gen_random_shape -> gen_random_image [arrowhead=None]
+    init_util_dataset -> shapedata_load_shapes
 }
