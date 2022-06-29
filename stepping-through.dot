@@ -9,10 +9,20 @@ digraph D {
     set_source_class_ids [label="Set list of source class ids"]
     shapedata_load_shapes [label="call load_shapes() on train shapes dataset"]
 
+    /* HERE BEGIN SUBGRAPHS */
+
+    subgraph cluster_0 {
+		style=filled;
+		color=lightgrey;
+		node [style=filled,color=white];
+        {set_image_ids, set_image_info, set_class_info, set_source_class_ids } 
+		label = "set util dataset properties";
+	}
+
 
     /* HERE BEGINS THE GRAPH */
     
     init_shapes_dataset -> init_util_dataset
-    init_util_dataset -> {set_image_ids, set_image_info, set_class_inf, set_source_class_ids} -> shapedata_load_shapes
+    init_util_dataset -> {set_image_ids, set_image_info, set_class_info, set_source_class_ids } -> shapedata_load_shapes
     
 }
